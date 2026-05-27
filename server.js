@@ -1,26 +1,18 @@
 const express = require('express');
 const multer = require('multer');
-const nodemailer = require('nodemailer');
+const sgMail = require('@sendgrid/mail');
 const path = require('path');
 
 const app = express();
 const upload = multer({ storage: multer.memoryStorage() });
 
 const TARGET_EMAIL = process.env.TARGET_EMAIL || 'mfilla.mf@gmail.com';
-const SMTP_HOST = process.env.EMAIL_HOST || 'smtp.example.com';
-const SMTP_PORT = Number(process.env.EMAIL_PORT || 587);
-const SMTP_USER = process.env.EMAIL_USER || 'mfilla.mf@gmail.com';
-const SMTP_PASS = process.env.EMAIL_PASS || 'lucanestle';
+const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
+const SENDER_EMAIL = process.env.EMAIL_USER || 'noreply@web-form-app.com';
 
-const transporter = nodemailer.createTransport({
-  host: SMTP_HOST,
-  port: SMTP_PORT,
-  secure: SMTP_PORT === 465,
-  auth: {
-    user: SMTP_USER,
-    pass: SMTP_PASS,
-  },
-});
+if (SENDGRID_API_KEY) {
+  sgMail.setApiKey(SENDGRID_API_KEY);
+}
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
@@ -45,26 +37,29 @@ app.post('/submit', upload.fields([{ name: 'picture', maxCount: 1 }, { name: 'vi
     if (req.files.picture && req.files.picture[0]) {
       attachments.push({
         filename: req.files.picture[0].originalname,
-        content: req.files.picture[0].buffer,
-        contentType: req.files.picture[0].mimetype,
+        content: req.files.picture[0].buffer.toString('base64'),
+        type: req.files.picture[0].mimetype,
+        disposition: 'attachment',
       });
     }
     if (req.files.video && req.files.video[0]) {
       attachments.push({
         filename: req.files.video[0].originalname,
-        content: req.files.video[0].buffer,
-        contentType: req.files.video[0].mimetype,
+        content: req.files.video[0].buffer.toString('base64'),
+        type: req.files.video[0].mimetype,
+        disposition: 'attachment',
       });
     }
 
-    await transporter.sendMail({
-      from: SMTP_USER,
+    const msg = {
       to: TARGET_EMAIL,
+      from: SENDER_EMAIL,
       subject: 'Web App Form Submission',
       text: messageBody,
-      attachments,
-    });
+      attachments: attachments,
+    };
 
+    await sgMail.send(msg);
     res.sendFile(path.join(__dirname, 'public', 'success.html'));
   } catch (error) {
     console.error('Send failed:', error);
