@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Erfolgreich eingereicht</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .container {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      padding: 40px;
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+    }
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      background: #4caf50;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 40px;
+    }
+    h1 {
+      color: #4caf50;
+      margin-bottom: 15px;
+      font-size: 28px;
+    }
+    p {
+      color: #666;
+      font-size: 16px;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+    .info-box {
+      background: #f5f5f5;
+      padding: 20px;
+      border-radius: 5px;
+      margin-bottom: 30px;
+      text-align: left;
+    }
+    .info-box p {
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+    .info-box p:last-child {
+      margin-bottom: 0;
+    }
+    a {
+      display: inline-block;
+      padding: 12px 30px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="success-icon">✓</div>
+    <h1>Erfolgreich eingereicht!</h1>
+    <p>Vielen Dank für Ihre Einsendung. Ihre Daten und Dateien wurden erfolgreich verarbeitet und eine E-Mail wurde an den Administrator gesendet.</p>
+    
+    <div class="info-box">
+      <p><strong>Was ist geschehen:</strong></p>
+      <p>✓ Ihre Textdaten wurden gespeichert</p>
+      <p>✓ Ihre Bilder und Videos wurden angehängt</p>
+      <p>✓ Eine Bestätigungsemail wurde versendet</p>
+    </div>
+    
+    <a href="/">Neues Formular ausfüllen</a>
+  </div>
+</body>
+</html>
