@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formular - Dateneingabe</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .container {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      padding: 40px;
+      max-width: 600px;
+      width: 100%;
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 30px;
+      text-align: center;
+      font-size: 28px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #555;
+      font-weight: 500;
+      font-size: 14px;
+    }
+    input[type="text"],
+    input[type="file"] {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+      transition: border-color 0.3s;
+    }
+    input[type="text"]:focus,
+    input[type="file"]:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+    .file-upload-section {
+      margin-top: 30px;
+      padding-top: 30px;
+      border-top: 2px solid #eee;
+    }
+    .file-group {
+      margin-bottom: 20px;
+    }
+    button {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-top: 20px;
+    }
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+    }
+    button:active {
+      transform: translateY(0);
+    }
+    .note {
+      color: #999;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Dateneingabe Formular</h1>
+    <form action="/submit" method="POST" enctype="multipart/form-data">
+      <div id="textFields"></div>
+      
+      <div class="file-upload-section">
+        <div class="file-group">
+          <label for="picture">Bild hochladen:</label>
+          <input type="file" id="picture" name="picture" accept="image/*">
+          <p class="note">Unterstützte Formate: JPG, PNG, GIF, WebP</p>
+        </div>
+        
+        <div class="file-group">
+          <label for="video">Video hochladen:</label>
+          <input type="file" id="video" name="video" accept="video/*">
+          <p class="note">Unterstützte Formate: MP4, WebM, OGG</p>
+        </div>
+      </div>
+      
+      <button type="submit">Absenden</button>
+    </form>
+  </div>
+
+  <script>
+    // Dynamisch 10 Textfelder erstellen
+    const container = document.getElementById('textFields');
+    for (let i = 1; i <= 10; i++) {
+      const group = document.createElement('div');
+      group.className = 'form-group';
+      
+      const label = document.createElement('label');
+      label.htmlFor = `text${i}`;
+      label.textContent = `Eingabe ${i}:`;
+      
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.id = `text${i}`;
+      input.name = `text${i}`;
+      input.placeholder = `Geben Sie Text ${i} ein...`;
+      
+      group.appendChild(label);
+      group.appendChild(input);
+      container.appendChild(group);
+    }
+  </script>
+</body>
+</html>
