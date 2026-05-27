@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: web-form-app
+    runtime: docker
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: TARGET_EMAIL
+        value: mfilla.mf@gmail.com
+      - key: EMAIL_HOST
+        value: smtp.gmail.com
+      - key: EMAIL_PORT
+        value: 465
+      - key: EMAIL_USER
+        value: mfilla.mf@gmail.com
+      - key: EMAIL_PASS
+        value: kdodkyzepmkrgjpe
+      - key: PORT
+        value: 3000
