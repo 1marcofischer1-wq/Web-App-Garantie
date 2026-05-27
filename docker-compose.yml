@@ -1,0 +1,15 @@
+services:
+  web-form-app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - TARGET_EMAIL=${TARGET_EMAIL:-mfilla.mf@gmail.com}
+      - EMAIL_HOST=${EMAIL_HOST:-smtp.gmail.com}
+      - EMAIL_PORT=${EMAIL_PORT:-465}
+      - EMAIL_USER=${EMAIL_USER:-mfilla.mf@gmail.com}
+      - EMAIL_PASS=${EMAIL_PASS:-kdodkyzepmkrgjpe}
+      - PORT=3000
+    volumes:
+      - ./server.js:/app/server.js
+      - ./public:/app/public
