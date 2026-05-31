@@ -96,6 +96,10 @@
   <div class="container">
     <h1>Dateneingabe Formular</h1>
     <form action="/submit" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="mitarbeiter">Mitarbeiter:</label>
+        <input type="text" id="mitarbeiter" name="mitarbeiter" placeholder="Geben Sie Ihren Namen ein...">
+      </div>
       <div id="textFields"></div>
       
       <div class="file-upload-section">
@@ -117,7 +121,6 @@
   </div>
 
   <script>
-    // Dynamisch 10 Textfelder erstellen
     const container = document.getElementById('textFields');
     for (let i = 1; i <= 10; i++) {
       const group = document.createElement('div');
