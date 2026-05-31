@@ -1,8 +1,3 @@
-Perfekt, Marco — dann baue ich dir jetzt einen **kompletten, aktualisierten README**, der **Render‑Hosting**, **Twilio SendGrid**, **Bild‑ und Video‑Upload** und deine Motivation sauber integriert.  
-Du kannst ihn **1:1 in GitHub übernehmen**.
-
----
-
 # **README – Bestandsaufnahme WebApp**
 
 Diese WebApp dient zur digitalen Erfassung von Maschinen, Staplern und Flurförderfahrzeugen.  
