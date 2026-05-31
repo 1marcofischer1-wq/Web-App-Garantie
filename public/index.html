@@ -127,25 +127,39 @@
   </div>
 
   <script>
+    const fieldNames = [
+      'Projektname',
+      'Beschreibung',
+      'Zeitaufwand (Stunden)',
+      'Kunde',
+      'Status',
+      'Priorität',
+      'Besonderheiten',
+      'Nächste Schritte',
+      'Kosten',
+      'Notizen'
+    ];
+    
     const container = document.getElementById('textFields');
-    for (let i = 1; i <= 10; i++) {
+    fieldNames.forEach((name, index) => {
       const group = document.createElement('div');
       group.className = 'form-group';
       
       const label = document.createElement('label');
-      label.htmlFor = `text${i}`;
-      label.textContent = `Eingabe ${i}:`;
+      label.htmlFor = `text${index + 1}`;
+      label.textContent = name + ':';
       
       const input = document.createElement('input');
       input.type = 'text';
-      input.id = `text${i}`;
-      input.name = `text${i}`;
-      input.placeholder = `Geben Sie Text ${i} ein...`;
+      input.id = `text${index + 1}`;
+      input.name = `text${index + 1}`;
+      input.placeholder = `Geben Sie ${name} ein...`;
       
       group.appendChild(label);
       group.appendChild(input);
       container.appendChild(group);
-    }
+    });
   </script>
+
 </body>
 </html>
